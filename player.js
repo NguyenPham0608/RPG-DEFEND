@@ -9,27 +9,31 @@ class Player{
         this.sy=0
         this.acceleration=0.5
         this.angle=0
+        this.speed=0
+        this.angleSpeed=0
     }
     update(){
         this.controls.update()
         if(this.controls.left){
-            this.sx-=this.acceleration
+            this.angleSpeed+=0.01
         }
         if(this.controls.right){
-            this.sx+=this.acceleration
+            this.angleSpeed-=0.01
         }
         if(this.controls.up){
-            this.sy+=this.acceleration
+            this.speed+=this.acceleration
         }
         if(this.controls.down){
-            this.sy-=this.acceleration
+            this.speed-=this.acceleration
         }
 
 
-        this.x+=this.sx
-        this.y-=this.sy
-        this.sx=0.95*this.sx
-        this.sy=0.95*this.sy
+        this.x-=Math.sin(this.angle)*this.speed
+        this.y-=Math.cos(this.angle)*this.speed 
+        this.speed=0.95*this.speed
+        this.angleSpeed=0.85*this.angleSpeed
+        this.angle+=this.angleSpeed
+
 
         console.log(this.sx)
 
@@ -37,13 +41,16 @@ class Player{
     }
     draw(ctx){
         ctx.save()
-        ctx.rotate()
+        ctx.translate(this.x, this.y)
+        ctx.rotate(-this.angle)
+
         ctx.beginPath()
         if (this.type=='Player') {
-            ctx.roundRect(this.x, this.y, this.size,this.size,4)
+            ctx.roundRect(-this.size/2, -this.size/2, this.size,this.size,4)
         } else {
-            ctx.arc(this.x, this.y, this.size, 0,Math.PI*2,false)  
+            ctx.arc(-this.size/2, -this.size/2, this.size, 0,Math.PI*2,false)  
         }
         ctx.fill()
+        ctx.restore()
     }
 }
