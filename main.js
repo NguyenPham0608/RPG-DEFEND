@@ -8,7 +8,8 @@ let playerX=0
 let playerY=0
 let ground=new Ground()
 let gameFrame=0
-let enemySpawnInterval=10
+let enemySpawnInterval=100
+let playerHealth=5000
 let enemySpawn=0
 let entities=[new Player('Player')]
 
@@ -18,15 +19,15 @@ function gameLoop(){
     ground.draw(ctx)
     enemySpawn=gameFrame%enemySpawnInterval
     if(enemySpawn==enemySpawnInterval-1){
-        entities.push(new Player('Enemy'))
+        entities.push(new Player('Enemy',getRandomArbitrary(0,canvas.width),-50))
     }
 
     entities.forEach((entity)=>{
         entity.update()
         entity.draw(ctx)
     })
+    console.log(playerHealth)
     gameFrame++
-    console.log(gameFrame%enemySpawnInterval)
     requestAnimationFrame(gameLoop)
 }
 

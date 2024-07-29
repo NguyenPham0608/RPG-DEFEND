@@ -12,18 +12,17 @@ class Ground{
 
         this.groundImageChoices=[this.image1,this.image2,this.image3]
         this.groundImages=[]
-        console.log(getRandomArbitrary(0,2))
-        for(let i=0;i<700;i++){
+        for(let i=0;i<450;i++){
             this.groundImages.push(this.groundImageChoices[getRandomArbitrary(0,2)])
         }
 
     }
     draw(ctx){
         this.idx=-1
-        for(let i=0;i<20;i++){
-            for(let j=0;j<35;j++){
+        for(let i=0;i<15;i++){
+            for(let j=0;j<30;j++){
                 this.idx++
-                ctx.drawImage(this.groundImages[this.idx],j*68,i*68)
+                ctx.drawImage(this.groundImages[this.idx],j*105,i*105,100,100)
             }
         }
     }

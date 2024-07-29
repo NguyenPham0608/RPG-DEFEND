@@ -15,3 +15,7 @@ function removeThisFromArray(array,id){
         array.splice(indexToRemove, 1);
     }
 }
+
+function getRandomArbitraryDecimal(min, max) {
+    return Math.random() * (max - min) + min;
+}
