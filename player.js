@@ -71,6 +71,7 @@ class Player{
                 }else{
                     this.speed=0
                     this.attackedNumber++
+                    this.explosions.push(new Explosion(playerX,playerY))
                     this.attack=true
                 }
                 if(this.home<80){
