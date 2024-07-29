@@ -7,4 +7,11 @@ function getRandomArbitrary(min, max) {
     let randomNum=randomNumList[Math.floor(Math.random() * (4 - 1 + 1)) + 1]
     
     return randomNum;
-  }
+}
+
+function removeThisFromArray(array,id){
+    const indexToRemove = array.findIndex(thing => thing.id === id);
+    if (indexToRemove !== -1) {
+        array.splice(indexToRemove, 1);
+    }
+}

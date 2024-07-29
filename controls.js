@@ -8,7 +8,7 @@ class Control{
         if(type=='Player'){
             this.#addKeyListeners()
         }else{
-            this.forward=true
+            this.up=true
         }
     }
     #addKeyListeners(){

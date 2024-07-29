@@ -1,29 +1,32 @@
 /**@type{HTMLCanvasElement} */
 const canvas=document.getElementById('canvas1')
 const ctx=canvas.getContext('2d')
-let player=new Player('Player')
+
 canvas.width=window.innerWidth
 canvas.height=window.innerHeight
 let playerX=0
 let playerY=0
 let ground=new Ground()
 let gameFrame=0
-let enemySpawnInterval=1000
+let enemySpawnInterval=10
 let enemySpawn=0
-let enemies=[]
+let entities=[new Player('Player')]
 
 function gameLoop(){
     canvas.width=window.innerWidth
     canvas.height=window.innerHeight
     ground.draw(ctx)
-    player.update()
-    player.draw(ctx)
     enemySpawn=gameFrame%enemySpawnInterval
-    if(enemySpawn=enemySpawnInterval-1){
-        enemies.push(new Player('Enemy'))
+    if(enemySpawn==enemySpawnInterval-1){
+        entities.push(new Player('Enemy'))
     }
+
+    entities.forEach((entity)=>{
+        entity.update()
+        entity.draw(ctx)
+    })
     gameFrame++
-    console.log(enemySpawn)
+    console.log(gameFrame%enemySpawnInterval)
     requestAnimationFrame(gameLoop)
 }
 
