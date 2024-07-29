@@ -10,7 +10,6 @@ class Player{
         this.angleSpeed=0
         this.home=0
         this.attackedNumber=0
-        
         this.id=getRandomArbitrary(0,1000000)
         if(type=="Enemy"){
             this.fillStyle='#FF0000'
@@ -27,9 +26,14 @@ class Player{
             this.attack=false
             this.x=canvas.width/2
             this.y=canvas.height/2
+
         }
+        this.explosions=[]
+
+
     }
     update(){
+        
         this.home++
         
         if(this.type=="Player"){
@@ -109,6 +113,9 @@ class Player{
     }
 
     draw(ctx){
+        this.explosions.forEach((explosion)=>{
+            explosion.draw(ctx,this.explosions)
+        })
         ctx.save()
         ctx.translate(this.x, this.y)
         ctx.rotate(-this.angle)

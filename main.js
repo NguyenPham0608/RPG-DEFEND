@@ -26,7 +26,6 @@ function gameLoop(){
         entity.update()
         entity.draw(ctx)
     })
-    console.log(playerHealth)
     gameFrame++
     requestAnimationFrame(gameLoop)
 }
