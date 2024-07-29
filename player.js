@@ -11,20 +11,35 @@ class Player{
         this.angle=0
         this.speed=0
         this.angleSpeed=0
+        if(type=="Enemy"){
+            this.dx=0
+            this.dy=0
+            this.distance=0
+        }
     }
     update(){
-        this.controls.update()
-        if(this.controls.left){
-            this.angleSpeed+=0.01
-        }
-        if(this.controls.right){
-            this.angleSpeed-=0.01
-        }
-        if(this.controls.up){
+        
+        if(this.type=="Player"){
+
+            if(this.controls.left){
+                this.angleSpeed+=0.01
+            }
+            if(this.controls.right){
+                this.angleSpeed-=0.01
+            }
+            if(this.controls.up){
+                this.speed+=this.acceleration
+            }
+            if(this.controls.down){
+                this.speed-=this.acceleration
+            }
+            playerX=this.x
+            playerY=this.y
+        }else{
             this.speed+=this.acceleration
-        }
-        if(this.controls.down){
-            this.speed-=this.acceleration
+            this.dx=this.x-playerX
+            this.dy=this.y-playerY
+            this.distance=Math.hypot(this.dx,this.dy)
         }
 
 
@@ -35,7 +50,6 @@ class Player{
         this.angle+=this.angleSpeed
 
 
-        console.log(this.sx)
 
 
     }

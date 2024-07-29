@@ -7,6 +7,8 @@ class Control{
         this.type=type
         if(type=='Player'){
             this.#addKeyListeners()
+        }else{
+            this.forward=true
         }
     }
     #addKeyListeners(){
@@ -44,6 +46,5 @@ class Control{
         }
     }
     update(){
-        // console.table(this)
     }
 }
