@@ -29,20 +29,16 @@ class Weapon{
         }else{
             this.shot=0
         }
-        if(this.myPlayer.type=='Enemy'){
-
+        this.dx=mouseX-this.x
+        this.dy=mouseY-this.y
+        this.distance=Math.hypot(this.dx,this.dy)
+        this.angle=Math.atan2(mouseY-this.y,mouseX-this.x)
+        if(this.angle>0.02){
+            this.flip=-1
         }else{
-            this.dx=mouseX-this.x
-            this.dy=mouseY-this.y
-            this.distance=Math.hypot(this.dx,this.dy)
-            this.angle=Math.atan2(this.dy,this.dx)
-            if(this.angle<-0.02){
-                this.flip=-1
-            }else{
-                this.flip=1
-            }
-            console.log(this.dy)
+            this.flip=1
         }
+        console.log(this.angle)
     }
 
     draw(ctx){
@@ -51,9 +47,10 @@ class Weapon{
         })
         ctx.save()
         ctx.translate(this.x,this.y)
-        ctx.rotate(-this.angle)
-        ctx.scale(this.flip,1)
-        ctx.drawImage(this.img,0,0,)
+        ctx.rotate(this.angle)
+       
+        // ctx.scale(this.flip,1)
+        ctx.drawImage(this.img,0,0)
         ctx.restore()
     }
 }

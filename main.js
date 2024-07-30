@@ -8,7 +8,7 @@ let playerX=0
 let playerY=0
 let ground=new Ground()
 let gameFrame=0
-let enemySpawnInterval=0
+let enemySpawnInterval=1
 let playerHealth=5000
 let enemySpawn=0
 let entities=[]
@@ -38,7 +38,7 @@ function gameLoop(){
 
 window.addEventListener('mousemove',function(e){
     mouseX=e.clientX
-    mouseY=e.clientX
+    mouseY=e.clientY
 })
 window.addEventListener('keydown',function(e){
     if(e.key==" "){
