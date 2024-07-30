@@ -1,29 +1,48 @@
 class Explosion{
-    constructor(x,y){
+    constructor(x,y,myWeaponData,type="mushroom"){
         this.id=getRandomArbitrary(0,1000000)
+        this.type=type
         this.frame=0
         this.frameX=0
         this.frameY=0
         this.frameYChange=0
         this.spriteWidth=(1207/8)
         this.spriteHeight=(605/4)
-        this.x=x-this.spriteWidth/2
-        this.y=y-this.spriteHeight/2
         this.img=new Image()
-        this.img.src='https://static.packt-cdn.com/products/9781785883910/graphics/4bfc14e9-f288-4e14-85bb-f46f71cf5192.png'
+        if (type=="mushroom") {
+            this.img.src='https://static.packt-cdn.com/products/9781785883910/graphics/4bfc14e9-f288-4e14-85bb-f46f71cf5192.png' 
+            this.x=x-this.spriteWidth/2
+            this.y=y-this.spriteHeight/2
+        } else {
+            this.img.src='Images/fire.png'  
+            this.x=x
+            this.y=y
+        }
+        this.weaponData=myWeaponData
     }
     draw(ctx,arrayFrom){
-        ctx.drawImage(this.img,this.frameX*this.spriteWidth,this.frameY*this.spriteHeight,this.spriteWidth,this.spriteHeight,this.x,this.y,this.spriteWidth,this.spriteHeight)
-        this.frameX++
-        if(this.frameX>7){
-            this.frameYChange++
-            if(this.frameY>2){
+        if (this.type=='mushroom') {
+            ctx.drawImage(this.img,this.frameX*this.spriteWidth,this.frameY*this.spriteHeight,this.spriteWidth,this.spriteHeight,this.x,this.y,this.spriteWidth,this.spriteHeight)
+            this.frameX++
+            if(this.frameX>7){
+                this.frameYChange++
+                if(this.frameY>2){
+                    removeThisFromArray(arrayFrom,this.id)
+                }
+                this.frameX=0
+            }
+            this.frameY=this.frameYChange%4
+        } else {
+            ctx.save()
+            ctx.translate(this.x,this.y)
+            ctx.rotate(-this.weaponData.angle)
+            ctx.scale(this.weaponData.flip,1)
+            ctx.drawImage(this.img,0,0)
+            ctx.restore()
+            if(this.frame>10){
                 removeThisFromArray(arrayFrom,this.id)
             }
-            this.frameX=0
         }
-        this.frameY=this.frameYChange%4
         this.frame++
-        console.log(this.frameX)
     }
 }

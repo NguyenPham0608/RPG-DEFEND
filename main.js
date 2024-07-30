@@ -8,10 +8,16 @@ let playerX=0
 let playerY=0
 let ground=new Ground()
 let gameFrame=0
-let enemySpawnInterval=10
+let enemySpawnInterval=0
 let playerHealth=5000
 let enemySpawn=0
-let entities=[new Player('Player')]
+let entities=[]
+let mouseX=0
+let mouseY=0
+let spacePressed=false
+
+
+entities.push(new Player('Player',0,0))
 
 function gameLoop(){
     canvas.width=window.innerWidth
@@ -30,4 +36,18 @@ function gameLoop(){
     requestAnimationFrame(gameLoop)
 }
 
+window.addEventListener('mousemove',function(e){
+    mouseX=e.clientX
+    mouseY=e.clientX
+})
+window.addEventListener('keydown',function(e){
+    if(e.key==" "){
+        spacePressed=true
+    }
+})
+window.addEventListener('keyup',function(e){
+    if(e.key==" "){
+        spacePressed=false
+    }
+})
 gameLoop()

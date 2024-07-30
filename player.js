@@ -5,7 +5,7 @@ class Player{
         this.sx=0
         this.sy=0
         this.acceleration=0.5
-        this.angle=0
+        this.angle=Math.PI/2
         this.speed=0
         this.angleSpeed=0
         this.home=0
@@ -29,11 +29,11 @@ class Player{
 
         }
         this.explosions=[]
-
+        this.weapon=new Weapon(this)
 
     }
     update(){
-        
+        this.weapon.update()
         this.home++
         
         if(this.type=="Player"){
@@ -71,7 +71,7 @@ class Player{
                 }else{
                     this.speed=0
                     this.attackedNumber++
-                    this.explosions.push(new Explosion(playerX,playerY))
+                    this.explosions.push(new Explosion(playerX,playerY,undefined))
                     this.attack=true
                 }
                 if(this.home<80){
@@ -128,7 +128,10 @@ class Player{
             ctx.arc(-this.size/2, -this.size/2, this.size, 0,Math.PI*2,false)  
         }
         ctx.fill()
+        ctx.lineWidth=4
         ctx.stroke()
         ctx.restore()
+
+        this.weapon.draw(ctx)
     }
 }

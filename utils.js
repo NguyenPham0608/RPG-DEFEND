@@ -19,3 +19,10 @@ function removeThisFromArray(array,id){
 function getRandomArbitraryDecimal(min, max) {
     return Math.random() * (max - min) + min;
 }
+
+function getIndexOf(array,id){
+    let indexToRemove = entities.findIndex(thing => thing.id === id);
+    if (indexToRemove !== -1) {
+        return(indexToRemove)
+    }
+}

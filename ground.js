@@ -1,7 +1,7 @@
 class Ground{
     constructor(){
         this.image1=new Image()
-        this.image1.src='Images/rocktile1.4.png'
+        this.image1.src='Images/brickwall.png'
         this.image2=new Image()
         this.image2.src='Images/rocktile1.5.png'
         this.image3=new Image()
@@ -19,11 +19,12 @@ class Ground{
     }
     draw(ctx){
         this.idx=-1
-        for(let i=0;i<15;i++){
-            for(let j=0;j<30;j++){
-                this.idx++
-                ctx.drawImage(this.groundImages[this.idx],j*105,i*105,100,100)
+        for(let i=0;i<4;i++){
+            for(let j=0;j<4;j++){
+                ctx.drawImage(this.image1,j*630,i*480,630,480)
             }
         }
+
+
     }
 }
