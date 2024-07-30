@@ -29,21 +29,19 @@ class Weapon{
         }else{
             this.shot=0
         }
-        this.#getAngleToMouse()
-    }
-    #getAngleToMouse(){
         if(this.myPlayer.type=='Enemy'){
 
         }else{
             this.dx=mouseX-this.x
             this.dy=mouseY-this.y
             this.distance=Math.hypot(this.dx,this.dy)
-            this.angle=Math.asin(this.dx/this.distance)
+            this.angle=Math.atan2(this.dy,this.dx)
             if(this.angle<-0.02){
                 this.flip=-1
             }else{
                 this.flip=1
             }
+            console.log(this.dy)
         }
     }
 
@@ -53,7 +51,7 @@ class Weapon{
         })
         ctx.save()
         ctx.translate(this.x,this.y)
-        ctx.rotate(-this.angle-this.myPlayer.angle+(Math.PI/2))
+        ctx.rotate(-this.angle)
         ctx.scale(this.flip,1)
         ctx.drawImage(this.img,0,0,)
         ctx.restore()
