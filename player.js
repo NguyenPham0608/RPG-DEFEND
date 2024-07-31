@@ -20,20 +20,31 @@ class Player{
             this.dx=0
             this.dy=0
             this.distance=0
+            this.radius=this.size
+            // this.weapon=false
+            
+
         }else{
             this.fillStyle='#00FF00'
             this.size=50
             this.attack=false
             this.x=canvas.width/2
             this.y=canvas.height/2
+            this.radius=this.size/2
+            this.weapon=new Weapon(this)
+
 
         }
+
+        this.dead=false
         this.explosions=[]
-        this.weapon=new Weapon(this)
 
     }
     update(){
-        this.weapon.update()
+        if(this.weapon){
+            this.weapon.update()
+        }
+
         this.home++
         
         if(this.type=="Player"){
@@ -71,7 +82,7 @@ class Player{
                 }else{
                     this.speed=0
                     this.attackedNumber++
-                    this.explosions.push(new Explosion(playerX,playerY,undefined))
+                    // this.explosions.push(new Explosion(playerX,playerY,this,'mushroom'))
                     this.attack=true
                 }
                 if(this.home<80){
@@ -102,6 +113,14 @@ class Player{
             }
         }
 
+        for(let i = 0; i<bulletsID.length;i++){
+            if(Math.hypot(this.x-bulletsX[i],this.y-bulletsY[i])<this.size){
+                if(this.type=="Enemy"){
+                    this.explosions.push(new Explosion(this.x,this.y,this,'dead'))
+                    this.dead=true
+                }
+            }
+        }
 
     }
 
@@ -122,16 +141,20 @@ class Player{
         ctx.rotate(-this.angle)
         ctx.fillStyle=this.fillStyle
         ctx.beginPath()
-        if (this.type=='Player') {
-            ctx.roundRect(-this.size/2, -this.size/2, this.size,this.size,4)
-        } else {
-            ctx.arc(-this.size/2, -this.size/2, this.size, 0,Math.PI*2,false)  
+        if(!this.dead){
+            if (this.type=='Player') {
+                ctx.roundRect(-this.size/2, -this.size/2, this.size,this.size,4)
+            } else {
+                ctx.arc(-this.size/2, -this.size/2, this.size, 0,Math.PI*2,false)  
+            }
         }
         ctx.fill()
         ctx.lineWidth=4
         ctx.stroke()
         ctx.restore()
 
-        this.weapon.draw(ctx)
+        if(this.weapon){
+            this.weapon.draw(ctx)
+        }
     }
 }

@@ -9,7 +9,7 @@ class Explosion{
         this.spriteWidth=(1207/8)
         this.spriteHeight=(605/4)
         this.img=new Image()
-        if (type=="mushroom") {
+        if (type=="mushroom"||type=='dead') {
             this.img.src='https://static.packt-cdn.com/products/9781785883910/graphics/4bfc14e9-f288-4e14-85bb-f46f71cf5192.png' 
             this.x=x-this.spriteWidth/2
             this.y=y-this.spriteHeight/2
@@ -21,12 +21,15 @@ class Explosion{
         this.weaponData=myWeaponData
     }
     draw(ctx,arrayFrom){
-        if (this.type=='mushroom') {
+        if (this.type=='mushroom'||this.type=='dead') {
             ctx.drawImage(this.img,this.frameX*this.spriteWidth,this.frameY*this.spriteHeight,this.spriteWidth,this.spriteHeight,this.x,this.y,this.spriteWidth,this.spriteHeight)
             this.frameX++
             if(this.frameX>7){
                 this.frameYChange++
                 if(this.frameY>2){
+                    if(this.type=="dead"){
+                        removeThisFromArray(entities,this.weaponData.id)
+                    }
                     removeThisFromArray(arrayFrom,this.id)
                 }
                 this.frameX=0
@@ -35,11 +38,11 @@ class Explosion{
         } else {
             ctx.save()
             ctx.translate(this.x,this.y)
-            ctx.rotate(-this.weaponData.angle)
-            ctx.scale(this.weaponData.flip,1)
-            ctx.drawImage(this.img,0,0)
+            ctx.rotate(this.weaponData.angle)
+            // ctx.scale(this.weaponData.flip,1)
+            ctx.drawImage(this.img,70,0)
             ctx.restore()
-            if(this.frame>10){
+            if(this.frame>5){
                 removeThisFromArray(arrayFrom,this.id)
             }
         }

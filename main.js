@@ -8,18 +8,27 @@ let playerX=0
 let playerY=0
 let ground=new Ground()
 let gameFrame=0
-let enemySpawnInterval=1
+let enemySpawnInterval=100
 let playerHealth=5000
 let enemySpawn=0
 let entities=[]
 let mouseX=0
 let mouseY=0
 let spacePressed=false
+let bulletsX=[]
+let bulletsY=[]
+let bulletsID=[]
+let crosshair=new Crosshair()
 
+document.body.style.cursor = 'none';
 
 entities.push(new Player('Player',0,0))
 
 function gameLoop(){
+    bulletsX=[]
+    bulletsY=[]
+    bulletsID=[]
+
     canvas.width=window.innerWidth
     canvas.height=window.innerHeight
     ground.draw(ctx)
@@ -33,6 +42,9 @@ function gameLoop(){
         entity.draw(ctx)
     })
     gameFrame++
+    console.log(crosshair)
+    crosshair.draw(ctx)
+
     requestAnimationFrame(gameLoop)
 }
 
