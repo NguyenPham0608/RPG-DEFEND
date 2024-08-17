@@ -1,5 +1,5 @@
 class Weapon{
-    constructor(myPlayer){
+    constructor(myPlayer,reload,knockback){
         this.index=0
         this.myPlayer=0
         this.img=new Image()
@@ -16,6 +16,10 @@ class Weapon{
         this.bullets=[]
         this.shot=0
         this.id=this.myPlayer.id
+        this.reload=reload
+        this.shoot=0
+        this.lastAngle=0
+        this.knockback=knockback
         // this.realAngle
     }
 
@@ -27,26 +31,43 @@ class Weapon{
             this.x=this.myPlayer.x
             this.y=this.myPlayer.y
         }
+        console.log(this.myPlayer.speed)
+
         if(spacePressed){
+            this.lastAngle=this.myPlayer.angle
+
             if(this.shot<1){
                 this.fire.push(new Explosion(this.x,this.y,this,'fire'))
                 this.bullets.push(new Bullet(this.x, this.y, 30, 0, 10,this))
                 this.shot=1
+
+            }else{
+                if(this.shoot==0){
+                    this.fire.push(new Explosion(this.x,this.y,this,'fire'))
+                    this.bullets.push(new Bullet(this.x, this.y, 30, 0, 10,this))
+                    this.shot=1
+
+
+                }
             }
+            // this.myPlayer.angle=this.lastAngle
         }else{
+            this.shoot=0
             this.shot=0
         }
         if(this.myPlayer.type=="Player"){
             this.dx=mouseX-this.x
             this.dy=mouseY-this.y
             this.distance=Math.hypot(this.dx,this.dy)
-            this.angle=Math.atan2(mouseY-this.y,mouseX-this.x)
+            this.angle=Math.atan2(this.dy,this.dx)
             if(this.angle>0.02){
                 this.flip=-1
             }else{
                 this.flip=1
             }
         }
+        this.shoot=gameFrame%this.reload
+
     }
 
     draw(ctx){

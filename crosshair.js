@@ -8,9 +8,9 @@ class Crosshair{
         this.mouseSpeed=0
     }
     draw(ctx){
-        this.angle+=this.mouseSpeed
+        this.angle+=0.01
         ctx.save()
-        ctx.translate(mouseX,mouseY)
+        ctx.translate(mouseX-3,mouseY-3)
         ctx.rotate(this.angle)
         ctx.drawImage(this.img,-75,-75)
         ctx.restore()

@@ -31,7 +31,7 @@ class Player{
             this.x=canvas.width/2
             this.y=canvas.height/2
             this.radius=this.size/2
-            this.weapon=new Weapon(this)
+            this.weapon=new Weapon(this,1,0.5)
 
 
         }
@@ -116,8 +116,10 @@ class Player{
         for(let i = 0; i<bulletsID.length;i++){
             if(Math.hypot(this.x-bulletsX[i],this.y-bulletsY[i])<this.size){
                 if(this.type=="Enemy"){
-                    this.explosions.push(new Explosion(this.x,this.y,this,'dead'))
-                    this.dead=true
+                    if(!this.dead){
+                        this.explosions.push(new Explosion(this.x,this.y,this,'dead'))
+                        this.dead=true
+                    }
                 }
             }
         }

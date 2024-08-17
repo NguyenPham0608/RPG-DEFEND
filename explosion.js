@@ -19,8 +19,10 @@ class Explosion{
             this.y=y
         }
         this.weaponData=myWeaponData
+        this.scaleDown=0
     }
     draw(ctx,arrayFrom){
+        this.scaleDown++
         if (this.type=='mushroom'||this.type=='dead') {
             ctx.drawImage(this.img,this.frameX*this.spriteWidth,this.frameY*this.spriteHeight,this.spriteWidth,this.spriteHeight,this.x,this.y,this.spriteWidth,this.spriteHeight)
             this.frameX++
@@ -38,9 +40,9 @@ class Explosion{
         } else {
             ctx.save()
             ctx.translate(this.x,this.y)
-            ctx.rotate(this.weaponData.angle)
+            ctx.rotate(this.weaponData.angle+getRandomArbitraryDecimal(-0.2,0.2))
             // ctx.scale(this.weaponData.flip,1)
-            ctx.drawImage(this.img,70,0)
+            ctx.drawImage(this.img,79-(this.scaleDown),5,79-(this.scaleDown),27-(this.scaleDown*2.72))
             ctx.restore()
             if(this.frame>5){
                 removeThisFromArray(arrayFrom,this.id)

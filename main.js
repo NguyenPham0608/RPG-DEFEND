@@ -20,7 +20,6 @@ let bulletsY=[]
 let bulletsID=[]
 let crosshair=new Crosshair()
 
-document.body.style.cursor = 'none';
 
 entities.push(new Player('Player',0,0))
 
@@ -42,7 +41,6 @@ function gameLoop(){
         entity.draw(ctx)
     })
     gameFrame++
-    console.log(crosshair)
     crosshair.draw(ctx)
 
     requestAnimationFrame(gameLoop)
@@ -61,5 +59,8 @@ window.addEventListener('keyup',function(e){
     if(e.key==" "){
         spacePressed=false
     }
+})
+window.addEventListener('click',function(){
+    document.body.style.cursor = 'none';
 })
 gameLoop()
