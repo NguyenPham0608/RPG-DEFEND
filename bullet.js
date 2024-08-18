@@ -18,8 +18,8 @@ class Bullet{
         bulletsID.push(this.id)
         for(let i=0;i<entitiesX.length;i++){
             if(Math.hypot(entitiesX[i]-this.x,entitiesY[i]-this.y)<60){
-                removeThisFromArray(this.myPlayer.bullets,this.id)
                 console.log(true)
+                removeThisFromArray(this.myPlayer.bullets,this.id)
             }
         }
 

@@ -31,7 +31,7 @@ class Player{
             this.x=canvas.width/2
             this.y=canvas.height/2
             this.radius=this.size/2
-            this.weapon=new Weapon(this,100,0.5)
+            this.weapon=new Weapon(this,10,0.5)
 
 
         }
