@@ -19,7 +19,10 @@ let bulletsX=[]
 let bulletsY=[]
 let bulletsID=[]
 let crosshair=new Crosshair()
-
+let shakeX=0
+let shakeY=0
+let entitiesX=[]
+let entitiesY=[]
 
 entities.push(new Player('Player',0,0))
 
@@ -27,6 +30,8 @@ function gameLoop(){
     bulletsX=[]
     bulletsY=[]
     bulletsID=[]
+    entitiesX=[]
+    entitiesY=[]
 
     canvas.width=window.innerWidth
     canvas.height=window.innerHeight
@@ -40,9 +45,14 @@ function gameLoop(){
         entity.update()
         entity.draw(ctx)
     })
+    if(gameFrame%2==0){
+        shakeX=shakeX*-shakeLength
+        shakeY=shakeY*-shakeLength
+    }
+
     gameFrame++
     crosshair.draw(ctx)
-
+    
     requestAnimationFrame(gameLoop)
 }
 

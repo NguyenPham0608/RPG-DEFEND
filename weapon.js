@@ -78,7 +78,7 @@ class Weapon{
             bullet.draw(ctx)
         })
         ctx.save()
-        ctx.translate(this.x,this.y)
+        ctx.translate(this.x+shakeX,this.y+shakeY)
         if (this.myPlayer.type=="Player") {
             ctx.rotate(this.angle)
         } else {

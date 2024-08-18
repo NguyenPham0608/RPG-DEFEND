@@ -21,7 +21,7 @@ class Ground{
         this.idx=-1
         for(let i=0;i<4;i++){
             for(let j=0;j<4;j++){
-                ctx.drawImage(this.image1,j*630,i*480,630,480)
+                ctx.drawImage(this.image1,(j*630)+shakeX,(i*480)+shakeY,630,480)
             }
         }
 

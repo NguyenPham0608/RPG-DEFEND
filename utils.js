@@ -26,3 +26,10 @@ function getIndexOf(array,id){
         return(indexToRemove)
     }
 }
+
+function sin(x){
+    return Math.sin(x)
+}
+function cos(x){
+    return Math.cos(x)
+}
