@@ -52,7 +52,8 @@ function gameLoop(){
 
     gameFrame++
     crosshair.draw(ctx)
-    
+    // console.log(entitiesX.length)
+
     requestAnimationFrame(gameLoop)
 }
 

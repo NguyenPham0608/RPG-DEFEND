@@ -40,7 +40,7 @@ class Explosion{
         } else {
             ctx.save()
             ctx.translate(this.x,this.y)
-            ctx.rotate(this.weaponData.angle+getRandomArbitraryDecimal(-0.2,0.2))
+            ctx.rotate(this.weaponData.angle)
             // ctx.scale(this.weaponData.flip,1)
             ctx.drawImage(this.img,79-(this.scaleDown),5,79-(this.scaleDown),27-(this.scaleDown*2.72))
             ctx.restore()

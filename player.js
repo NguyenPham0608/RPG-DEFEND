@@ -31,7 +31,7 @@ class Player{
             this.x=canvas.width/2
             this.y=canvas.height/2
             this.radius=this.size/2
-            this.weapon=new Weapon(this,10,0.5)
+            this.weapon=new Weapon(this,100,0.5)
 
 
         }
@@ -41,9 +41,12 @@ class Player{
 
     }
     update(){
-        if(this.weapon){
-            this.weapon.update()
+        if(this.type=="Enemy"){
+            entitiesX.push(this.x)
+            entitiesY.push(this.y)
         }
+
+
 
         this.home++
         
@@ -117,18 +120,17 @@ class Player{
             if(Math.hypot(this.x-bulletsX[i],this.y-bulletsY[i])<this.size){
                 if(this.type=="Enemy"){
                     if(!this.dead){
-                        new Shake(0.65,this.radius)
+                        new Shake(0.85,this.radius)
                         this.explosions.push(new Explosion(this.x,this.y,this,'dead'))
                         this.dead=true
                     }
                 }
             }
         }
-
-        if(this.type=="Enemy"){
-            entitiesX.push(this.x)
-            entitiesY.push(this.y)
+        if(this.weapon){
+            this.weapon.update()
         }
+
 
     }
 

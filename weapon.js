@@ -31,7 +31,6 @@ class Weapon{
             this.x=this.myPlayer.x
             this.y=this.myPlayer.y
         }
-        console.log(this.myPlayer.speed)
 
         if(spacePressed){
             this.lastAngle=this.myPlayer.angle
