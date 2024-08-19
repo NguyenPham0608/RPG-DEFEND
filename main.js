@@ -30,8 +30,7 @@ function gameLoop(){
     bulletsX=[]
     bulletsY=[]
     bulletsID=[]
-    entitiesX=[]
-    entitiesY=[]
+
 
     canvas.width=window.innerWidth
     canvas.height=window.innerHeight
@@ -54,6 +53,8 @@ function gameLoop(){
     crosshair.draw(ctx)
     // console.log(entitiesX.length)
 
+    entitiesX=[]
+    entitiesY=[]
     requestAnimationFrame(gameLoop)
 }
 
