@@ -19,8 +19,8 @@ class Bullet{
         console.log(entitiesX)
         for(let i=0;i<entitiesX.length;i++){
             console.log(Math.hypot(bulletsX[i]-this.x,bulletsY[i]-this.y)<70)
-
             if(Math.hypot(bulletsX[i]-this.x,bulletsY[i]-this.y)<70){
+                removeThisFromArray(this.myPlayer.bullets,this.id)
             }
         }
     }
