@@ -14,7 +14,7 @@ class Player{
         if(type=="Enemy"){
             this.fillStyle='#FF0000'
             this.size=getRandomArbitraryDecimal(12,32)
-            this.randomSpeed=(9.6/this.size)+getRandomArbitraryDecimal(0.05,0.1)
+            this.randomSpeed=(5/this.size)+getRandomArbitraryDecimal(0.05,0.1)
             this.x=x
             this.y=y
             this.dx=0
@@ -115,18 +115,20 @@ class Player{
                 removeThisFromArray(entities,this.id)
             }
         }
-
-        for(let i = 0; i<bulletsID.length;i++){
-            if(Math.hypot(this.x-bulletsX[i],this.y-bulletsY[i])<this.size){
-                if(this.type=="Enemy"){
-                    if(!this.dead){
-                        new Shake(0.85,this.radius)
+        if(this.type=="Enemy"){
+            if(!this.dead){
+                for(let i = 0; i<bulletsID.length;i++){
+                    if(Math.hypot(this.x-bulletsX[i],this.y-bulletsY[i])<this.size){
+                        new Shake(this.radius/40,this.radius)
                         this.explosions.push(new Explosion(this.x,this.y,this,'dead'))
                         this.dead=true
                     }
                 }
             }
         }
+
+
+
         if(this.weapon){
             this.weapon.update()
         }
