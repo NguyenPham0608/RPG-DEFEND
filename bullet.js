@@ -37,7 +37,7 @@ class Bullet{
         ctx.beginPath()
         // ctx.fillStyle='black'
         // ctx.roundRect(20, 10, 10,4,1)
-        ctx.drawImage(this.image,0,4,90,45)
+        ctx.drawImage(this.image,0,-4,45,22)
         ctx.fill()
         ctx.restore()
     }
